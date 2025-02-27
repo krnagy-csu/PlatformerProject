@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Math = Unity.Mathematics.Geometry.Math;
+using TMPro;
 
 public class CharacterControllerScript : MonoBehaviour
 {
     public Transform controller;
-    private Rigidbody _rb;
+    public Rigidbody _rb;
     public InputAction move;
     public InputAction jump;
     public float playerSpdMax = 10;
@@ -29,12 +30,16 @@ public class CharacterControllerScript : MonoBehaviour
     public int score = 0;
     public int coins = 0;
     private Vector3 _Gravity;
-    
-    
+    public TMP_Text scoreText;
+    public GameObject Mario;
+    public Animator marioAnimator;
+  
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        scoreText.text = score.ToString("00000");
+        _rb = gameObject.GetComponent<Rigidbody>();
         move.Enable();
         jump.Enable();
         spdCurrent = 0;
@@ -44,11 +49,14 @@ public class CharacterControllerScript : MonoBehaviour
         _jumpTimer = 0;
         startPos = transform.position;
         _Gravity = Physics.gravity;
+        //scoreText.text = "0000";
+
     }
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        scoreText.text = score.ToString("00000");
         if (_jumpTimer > 0)
         {
             _isJumping = true;
@@ -142,8 +150,7 @@ public class CharacterControllerScript : MonoBehaviour
         {
             _rb.linearDamping = 0.1f;
             _rb.AddForce(movePwr * playerAccel * 0.4f, 0, 0);
-            _rb.linearVelocity = new Vector3(Mathf.Clamp(_rb.linearVelocity.x, -playerSpdMax*1.1f, playerSpdMax*1.1f), _rb.linearVelocity.y, 0);
-
+            _rb.linearVelocity = new Vector3(Mathf.Clamp(_rb.linearVelocity.x, -playerSpdMax*1.1f, playerSpdMax*1.1f), Mathf.Max(_rb.linearVelocity.y,-fallSpdMax), 0);
             if (Mathf.Abs(_rb.linearVelocity.y) < 0.4f)
             {
                 Physics.gravity = _Gravity * 0.3f;

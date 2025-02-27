@@ -22,4 +22,8 @@ public class BoxScript : MonoBehaviour
 
         _counter += Time.deltaTime;
     }
+    private void OnDestroy()
+    {
+        
+    }
 }

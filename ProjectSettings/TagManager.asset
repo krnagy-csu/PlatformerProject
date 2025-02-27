@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Question
   - Brick
+  - Death
   layers:
   - Default
   - TransparentFX

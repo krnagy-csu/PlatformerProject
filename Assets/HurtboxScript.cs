@@ -13,4 +13,13 @@ public class HurtboxScript : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Brick") || other.CompareTag("Question"))
+        {
+            Destroy(other.gameObject);
+            transform.parent.GetComponent<CharacterControllerScript>().score += 100;
+
+        }
+    }
 }

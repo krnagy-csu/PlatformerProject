@@ -40,6 +40,8 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject stonePrefab;
+    public GameObject finish;
+    public GameObject water;
 
     // --------------------------------------------------------------------------
     void Start()
@@ -58,7 +60,7 @@ public class LevelParser : MonoBehaviour
     void LoadLevel()
     {
         string fileToParse = $"{Application.dataPath}/Resources/{filename}.txt";
-        Debug.Log($"Loading level file: {fileToParse}");
+        //Debug.Log($"Loading level file: {fileToParse}");
 
         Stack<string> levelRows = new Stack<string>();
 
@@ -82,7 +84,7 @@ public class LevelParser : MonoBehaviour
             for (int col = 0; col < letters.Length; ++col)
             {
                 GameObject newBlock;
-                Debug.Log(currentLine.Substring(1));
+                //Debug.Log(currentLine.Substring(1));
                 if (currentLine.StartsWith('?'))
                 {
                     newBlock = Instantiate(questionBoxPrefab, environmentRoot);
@@ -105,6 +107,16 @@ public class LevelParser : MonoBehaviour
                     newBlock = Instantiate(stonePrefab, environmentRoot);
                     newBlock.transform.position = new Vector3(col, row, 0);
 
+                }
+                else if (currentLine.StartsWith('W'))
+                {
+                    newBlock = Instantiate(water, environmentRoot);
+                    newBlock.transform.position = new Vector3(col, row, 0);
+                }
+                else if (currentLine.StartsWith('F'))
+                {
+                    newBlock = Instantiate(finish, environmentRoot);
+                    newBlock.transform.position = new Vector3(col, row, 0);
                 }
 
                 // Todo - Instantiate a new GameObject that matches the type specified by letter
