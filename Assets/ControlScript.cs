@@ -11,13 +11,17 @@ public class ControlScript : MonoBehaviour
     public TMP_Text clockText;
 
     public float maxTime = 600;
+    public Transform player;
 
-    private float timer;
+    private float _timer;
+
+    private Transform mainCam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         coins = 0;
-        timer = maxTime;
+        _timer = maxTime;
+        mainCam = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -41,7 +45,7 @@ public class ControlScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.D))
+        /*if (Input.GetKey(KeyCode.D))
         {
             Camera.main.gameObject.transform.position += Vector3.right * (25 * Time.deltaTime);
             Debug.Log("To the right!");
@@ -50,9 +54,16 @@ public class ControlScript : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             Camera.main.gameObject.transform.position -= Vector3.right * (25 * Time.deltaTime);
+        }*/
+        if (mainCam.position.x < (player.position.x - 7f))
+        {
+            mainCam.position = new Vector3(player.position.x - 7f,mainCam.position.y,mainCam.position.z);
+        } else if (mainCam.position.x > (player.position.x + 7f))
+        {
+            mainCam.position = new Vector3(player.position.x + 7f,mainCam.position.y,mainCam.position.z);
         }
 
-        timer -= Time.deltaTime;
-        clockText.text = Mathf.Floor(timer).ToString();
+        _timer -= Time.deltaTime;
+        clockText.text = Mathf.Floor(_timer).ToString();
     }
 }
