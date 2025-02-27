@@ -563,7 +563,7 @@ MonoBehaviour:
   coins: 0
   coinsText: {fileID: 993816249}
   clockText: {fileID: 765371589}
-  maxTime: 600
+  maxTime: 100
   player: {fileID: 564193937}
 --- !u!4 &332372732
 Transform:
@@ -640,6 +640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 504607180}
+  - component: {fileID: 504607182}
   - component: {fileID: 504607181}
   m_Layer: 0
   m_Name: Climbox
@@ -657,14 +658,14 @@ Transform:
   m_GameObject: {fileID: 504607179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.463, z: 0}
+  m_LocalPosition: {x: 0, y: -0.389, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 564193937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &504607181
-SphereCollider:
+--- !u!65 &504607181
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -682,8 +683,20 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.55
+  m_Size: {x: 1.05, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &504607182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504607179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20c26624def94833801023ee576296b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &522290484
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bc7dcbd43ed431f807e67072177e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 332372732}
   move:
     m_Name: Move
     m_Type: 0
@@ -985,9 +999,8 @@ MonoBehaviour:
   playerAccel: 7
   spdCurrent: 0
   vertSpd: 0
-  gravity: 6
   fallSpdMax: 5
-  jumpPwr: 12
+  jumpPwr: 6
   score: 0
   coins: 0
 --- !u!54 &564193939
@@ -1027,6 +1040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 629877339}
   - component: {fileID: 629877340}
+  - component: {fileID: 629877341}
   m_Layer: 0
   m_Name: Hurtbox
   m_TagString: Untagged
@@ -1043,7 +1057,7 @@ Transform:
   m_GameObject: {fileID: 629877338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.496, z: 0}
+  m_LocalPosition: {x: 0, y: 0.566, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1068,8 +1082,20 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.55
+  m_Radius: 0.49
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &629877341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629877338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59432b2c61ef44f0597fc375d094ffec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &727678646
 GameObject:
   m_ObjectHideFlags: 0

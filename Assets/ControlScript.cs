@@ -63,7 +63,21 @@ public class ControlScript : MonoBehaviour
             mainCam.position = new Vector3(player.position.x + 7f,mainCam.position.y,mainCam.position.z);
         }
 
-        _timer -= Time.deltaTime;
+        if (_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Game over!");
+            player.GetComponent<CharacterControllerScript>().Die();
+        }
+
         clockText.text = Mathf.Floor(_timer).ToString();
+    }
+
+    public void ResetTimer()
+    {
+        _timer = maxTime;
     }
 }
